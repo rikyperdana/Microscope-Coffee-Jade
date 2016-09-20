@@ -1,0 +1,14 @@
+form.main.form.page
+
+	div.form-group(class="{{errorClass 'url'}}")
+		label.control-label(for="url") URL
+		div.controls
+			input.form-control#url(name="url", type="text", value="", placeholder="Your URL")
+			span.help-block {{errorMessage 'url'}}
+	
+	div.form-group(class="{{errorClass 'title'}}")
+		label.control-label(for='title') Title
+		div.controls
+			input.form-control#title(name="title", type="text", value="", placeholder="Your Title")
+	
+	input.btn.btn-primary(type="submit", value="Submit")

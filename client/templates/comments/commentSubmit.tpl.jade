@@ -1,0 +1,7 @@
+form.comment-form.form(name="comment")
+	div.form-group(class="{{errorClass 'body'}}")
+		div.controls
+			label(for="body") Comment on this post
+			textarea.form-control#body(name="body", rows="3")
+			span.help-block {{errorMessage 'body'}}
+	button.btn.btn-primary(type="submit") Add Comment

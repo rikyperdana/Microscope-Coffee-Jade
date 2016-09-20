@@ -1,0 +1,21 @@
+nav.navbar.navbar-default(role="navigation")
+	div.navbar-header
+		button.navbar-toggle.collapsed(type="button")
+			span.sr-only Toggle navigation
+			span.icon-bar
+			span.icon-bar
+			span.icon-bar
+		a.navbar-brand(href="{{pathFor 'home'}}") Microscope
+	div.collapse.navbar-collapse#navigation
+		ul.nav.navbar-nav
+			li(class="{{activeRouteClass 'home' 'newPosts'}}")
+				a(href="{{pathFor 'newPosts'}}") New
+			li(class="{{activeRouteClass 'bestPosts'}}")
+				a(href="{{pathFor 'bestPosts'}}") Best
+			if currentUser
+				li(class="{{activeRouteClass 'postSubmit'}}")
+					a(href="{{pathFor 'postSubmit'}}") Submit Post
+				li.dropdown
+					+notifications
+		ul.nav.navbar-nav.navbar-right
+			+loginButtons

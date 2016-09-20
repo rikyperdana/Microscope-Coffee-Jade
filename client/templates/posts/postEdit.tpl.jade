@@ -1,0 +1,16 @@
+form.main.form.page
+
+	div.form-group(class='{{errorClass "url"}}')
+		label.control-label(for='url') URL
+		div.controls
+			input.form-control#url(name='url', type='text', value='{{url}}', placeholder='Your URL')
+			span.help-block {{errorMessage 'url'}}
+			
+	div.form-group(class='{{errorClass "title"}}')
+		label.control-label(for='title') Title
+		div.controls
+			input.form-control#title(name='title', type='text', value='{{title}}', placeholder='Your Title')
+			span.help-block {{errorMessage 'title'}}
+	
+	input.btn.btn-primary.submit(type='submit', value='Submit')
+	a.btn.btn-danger.delete(href='#') Delete post

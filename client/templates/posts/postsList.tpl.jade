@@ -1,0 +1,9 @@
+
+div.posts.page
+	div.wrapper
+		{{#each posts}} {{> postItem}} {{/each}}
+		if nextPath
+			a.load-more(href="{{nextPath}}") Load more
+		else
+			unless ready
+				+spinner

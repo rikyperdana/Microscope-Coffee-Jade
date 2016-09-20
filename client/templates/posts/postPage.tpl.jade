@@ -1,0 +1,9 @@
+
+div.post-page.page
+	+postItem
+	ul.comments
+		{{#each comments}} {{> commentItem}} {{/each}}
+		if currentUser
+			+commentSubmit
+		else
+			p Please log in to leave a comment.
