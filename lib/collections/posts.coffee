@@ -7,13 +7,14 @@ Posts.allow
 		ownsDocument userId, post
 
 Posts.deny
-  update: (userId, post, fieldNames) ->
-    return (_.without(fieldNames, 'url', 'title').length > 0)
+	update: (userId, post, fieldNames) ->
+		without = _.without fieldNames, 'url', 'title'
+		without.length > 0
 
 Posts.deny
-  update: (userId, post, fieldNames, modifier) ->
-    errors = validatePost(modifier.$set)
-    return errors.title || errors.url
+	update: (userId, post, fieldNames, modifier) ->
+		errors = validatePost modifier.$set
+		errors.title or errors.url
 
 @validatePost = (post) ->
 	errors = {}
@@ -34,10 +35,11 @@ Meteor.methods
 			url: String
 		
 		errors = validatePost postAttributes
-		if errors.title || errors.url
+		if errors.title or errors.url
 			throw new Meteor.Error "invalid-post", "You must set a title and URL for your post"
 		
-		postWithSameLink = Posts.findOne {url: postAttributes.url}
+		postWithSameLink = Posts.findOne
+			url: postAttributes.url
 		
 		if postWithSameLink
 			postExists: true
@@ -53,19 +55,24 @@ Meteor.methods
 			votes: 0
 		postId = Posts.insert post
 		
-		return _id: postId
+		_id: postId
 	
 	upvote: (postId) ->
 		check this.userId, String
 		check postId, String
-		
-		affected = Posts.update({
-				_id: postId,
-				upvoters: {$ne: this.userId}
-			}, {
-				$addToSet: {upvoters: this.userId},
-				$inc: {votes: 1}
-			})
+
+		selector =
+			_id: postId
+			upvoters: 
+				$ne: this.userId
 			
+		filler =
+			$addToSet:
+				upvoters: this.userId
+			$inc:
+				votes: 1
+			
+		affected = Posts.update selector, filler
+					
 		if not affected
 			throw new Meteor.Error "invalid", "You weren't able to upvote that post"

@@ -10,7 +10,7 @@ Template.postItem.helpers
 		
 	upvotedClass: ->
 		userId = Meteor.userId()
-		if userId && !_.include this.upvoters, userId
+		if userId and not _.include this.upvoters, userId
 			'btn-primary upvotable'
 		else
 			'disabled'

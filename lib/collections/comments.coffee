@@ -17,10 +17,12 @@ Meteor.methods
 			author: user.username,
 			submitted: new Date()
 		
-		Posts.update comment.postId, {$inc: {commentsCount: 1}}
+		Posts.update comment.postId,
+			$inc:
+				commentsCount: 1
 		
 		comment._id = Comments.insert comment
 		
-		createCommentNotification(comment)
+		createCommentNotification comment
 		
 		comment._id

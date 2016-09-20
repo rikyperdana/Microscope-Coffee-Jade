@@ -14,7 +14,7 @@ Template.postSubmit.events
 			url: $(e.target).find('[name=url]').val()
 			title: $(e.target).find('[name=title]').val()
 		errors = validatePost post
-		if errors.title || errors.url
+		if errors.title or errors.url
 			Session.set 'postSubmitErrors', errors
 		Meteor.call 'postInsert', post, (error, result) ->
 			if error

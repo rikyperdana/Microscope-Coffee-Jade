@@ -15,7 +15,7 @@ Template.postEdit.events
 			url: $(e.target).find('[name=url]').val()
 			title: $(e.target).find('[name=title]').val()
 		errors = validatePost postProperties
-		if errors.title || errors.url
+		if errors.title or errors.url
 			Session.set 'postEditErrors', errors
 		Posts.update currentPostId,
 			$set: postProperties,

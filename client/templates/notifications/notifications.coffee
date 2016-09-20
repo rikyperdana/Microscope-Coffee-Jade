@@ -4,7 +4,11 @@ Template.notifications.helpers
 			userId: Meteor.userId()
 			read: false
 	notificationCount: ->
-		Notifications.find({userId: Meteor.userId(), read: false}).count();
+		selector =
+			userId: Meteor.userId()
+			read: false
+		counter = Notifications.find selector
+		counter.count()
 
 Template.notificationItem.helpers
 	notificationPostPath: ->
@@ -13,4 +17,6 @@ Template.notificationItem.helpers
 
 Template.notificationItem.events
 	'click a': ->
-		Notifications.update this._id, {$set: {read: true}}
+		Notifications.update this._id,
+			$set:
+				read: true

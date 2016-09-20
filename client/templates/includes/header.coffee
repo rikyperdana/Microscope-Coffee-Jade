@@ -4,5 +4,5 @@ Template.header.helpers
 		args.pop()
 
 		active = _.any args (name) ->
-			Router.current() && Router.current().route.getName() is name
-		active && 'active'
+			Router.current() and Router.current().route.getName() is name
+		active and 'active'

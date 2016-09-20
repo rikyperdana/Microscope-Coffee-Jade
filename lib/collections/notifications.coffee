@@ -2,7 +2,7 @@
 
 Notifications.allow
 	update: (userId, doc, fieldNames) ->
-		ownsDocument(userId, doc) && fieldNames.length is 1 && fieldNames[0] is 'read'
+		ownsDocument(userId, doc) and fieldNames.length is 1 and fieldNames[0] is 'read'
 
 @createCommentNotification = (comment) ->
 	post = Posts.findOne comment.postId

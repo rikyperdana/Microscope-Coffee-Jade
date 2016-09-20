@@ -5,6 +5,7 @@ Template.postsList.onRendered ->
 			.hide()
 			.insertBefore next
 			.fadeIn()
+			
 		moveElement: (node, next) ->
 			$node = $(node)
 			$next = $(next)
@@ -24,6 +25,7 @@ Template.postsList.onRendered ->
 			$(node).offset()
 			$(node).addClass('animate').css('top', 0)
 			$inBetween.addClass('animate').css('top', 0)
+			
 		removeElement: (node) ->
 			$(node).fadeOut ->
 				$(this).remove()
